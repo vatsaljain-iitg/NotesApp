@@ -5,6 +5,7 @@ showNotes()
 let addBtn = document.getElementById('addBtn')
 addBtn.addEventListener("click", function (e) {
     addTxt = document.getElementById('addTxt')
+    addTitle = document.getElementById('addTitle')
     notes = localStorage.getItem("notes")
     if (notes == null) {
         notesObj = [];
@@ -12,12 +13,21 @@ addBtn.addEventListener("click", function (e) {
     else {
         notesObj = JSON.parse(notes)
     }
-    if (addTxt.value == "") {
-        alert("Blank note cannot be added!")
-    } else {
-        notesObj.push(addTxt.value)
+    myObj = {
+        text: addTxt.value,
+        title: addTitle.value
+    }
+    if (addTitle.value == "") {
+        alert("Enter the title of the note")
+    }
+    else if (addTxt.value == "") {
+        alert("Empty note cannot be added!")
+    }
+    else {
+        notesObj.push(myObj)
         localStorage.setItem("notes", JSON.stringify(notesObj))
         addTxt.value = ""
+        addTitle.value = ""
         // console.log(notesObj)
         showNotes()
     }
@@ -38,8 +48,8 @@ function showNotes() {
             `
             <div class="my-2 mx-2 card noteCard styling"  style = "width: 18rem;" >
             <div class="card-body">
-                <h4 class="card-title">Note ${index + 1}</h4>
-                <p class="card-text">${element}</p>
+                <h4 class="card-title">${element.title}</h4>
+                <p class="card-text">${element.text}</p>
                 <button id="${index}" onclick="deleteNode(this.id)" class="btn btn-primary deletion">Delete Note</button>
             </div>
             </div>
