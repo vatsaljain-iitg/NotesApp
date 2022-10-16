@@ -1,0 +1,32 @@
+body{
+    background-color: white;
+}
+h1 {
+    text-align: center;
+}
+
+.side {
+    text-align: left;
+}
+.styling{
+    border:2px solid black;
+}
+.card-title{
+    font-weight: bold;
+    font-style: italic;
+}
+p{
+    font-size: 1.5rem;
+    font-style: italic;
+}
+.btn{
+    font-weight: bold !important;
+}
+.searchthis{
+    color:white
+}
+#notes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
