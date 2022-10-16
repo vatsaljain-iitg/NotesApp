@@ -1,4 +1,4 @@
-console.log('Welcome to notes app. THis is buildnotes.js')
+console.log('Welcome to notes app. This is buildnotes.js')
 showNotes()
 
 // if user add a note, add it to the local storage
@@ -12,11 +12,16 @@ addBtn.addEventListener("click", function (e) {
     else {
         notesObj = JSON.parse(notes)
     }
-    notesObj.push(addTxt.value)
-    localStorage.setItem("notes", JSON.stringify(notesObj))
-    addTxt.value = ""
-    // console.log(notesObj)
-    showNotes()
+    if (addTxt.value == "") {
+        alert("Blank note cannot be added!")
+    } else {
+        notesObj.push(addTxt.value)
+        localStorage.setItem("notes", JSON.stringify(notesObj))
+        addTxt.value = ""
+        // console.log(notesObj)
+        showNotes()
+    }
+
 })
 
 function showNotes() {
@@ -75,11 +80,11 @@ search.addEventListener('input', function () {
     noteCards = document.getElementsByClassName('noteCard')
     Array.from(noteCards).forEach(function (element) {
         cardTxt = element.getElementsByTagName("p")[0].innerText.toLowerCase();
-        if(cardTxt.includes(inputVal)){
-            element.style.display="block"
+        if (cardTxt.includes(inputVal)) {
+            element.style.display = "block"
         }
-        else{
-            element.style.display="none"
+        else {
+            element.style.display = "none"
         }
     })
 })
